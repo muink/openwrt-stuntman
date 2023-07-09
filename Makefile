@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=stuntman
 PKG_VERSION:=1.2.16
-PKG_RELEASE:=20230705
+PKG_RELEASE:=20230708
 
 PKG_MAINTAINER:=muink <hukk1996@gmail.com>
 PKG_LICENSE:=Apache-2.0
@@ -33,7 +33,13 @@ define Package/$(PKG_NAME)/Default
 	TITLE:=An open source STUN server and client code by john selbie. Compliant with the latest RFCs including 5389, 5769, and 5780. Also includes backwards compatibility for RFC 3489.
 	URL:=https://github.com/jselbie/stunserver
 	DEPENDS:=+libpthread +libstdcpp +libopenssl
-endef)
+endef
+
+define Package/$(PKG_NAME)
+  $(call Package/$(PKG_NAME)/Default)
+  PROVIDES:=$(PKG_NAME)
+  DEPENDS+= +$(PKG_NAME)-client +$(PKG_NAME)-server +$(PKG_NAME)-testcode
+endef
 
 Package/$(PKG_NAME)-client = $(Package/$(PKG_NAME)/Default)
 Package/$(PKG_NAME)-server = $(Package/$(PKG_NAME)/Default)
@@ -43,6 +49,7 @@ define Package/$(PKG_NAME)/description/Default
   An open source STUN server and client code by john selbie. Compliant with the latest RFCs including 5389, 5769, and 5780. Also includes backwards compatibility for RFC 3489.
 endef
 
+Package/$(PKG_NAME)/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-client/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-server/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-testcode/description = $(Package/$(PKG_NAME)/description/Default)
@@ -65,3 +72,4 @@ endef
 $(eval $(call BuildPackage,$(PKG_NAME)-client))
 $(eval $(call BuildPackage,$(PKG_NAME)-testcode))
 $(eval $(call BuildPackage,$(PKG_NAME)-server))
+$(eval $(call BuildPackage,$(PKG_NAME)))
