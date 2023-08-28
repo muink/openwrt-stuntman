@@ -18,11 +18,6 @@ cd OpenWrt-sdk-*-x86_64_*
 make menuconfig
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-# Link boost lib to toolchain for compilation
-sudo -E apt-get -y install libboost-dev
-pushd ./staging_dir/toolchain-*/include
-ln -s /usr/include/boost boost
-popd
 # Get Makefile
 git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/openwrt-stuntman.git package/stuntman
 pushd package/stuntman
