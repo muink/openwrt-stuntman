@@ -1,9 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
 #
-# Copyright (C) 2023-2024 muink
-#
-# This is free software, licensed under the Apache-2.0 license.
-# See /LICENSE for more information.
-#
+# Copyright (C) 2023-2024 muink <https://github.com/muink>
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=stuntman
