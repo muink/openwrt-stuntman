@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
-# Copyright (C) 2023-2025 muink <https://github.com/muink>
+# Copyright (C) 2023-2026 muink <https://github.com/muink>
 
 include $(TOPDIR)/rules.mk
 
@@ -44,12 +44,6 @@ define Package/$(PKG_NAME)/Default
 	DEPENDS:=+libpthread +libstdcpp +libopenssl
 endef
 
-define Package/$(PKG_NAME)
-  $(call Package/$(PKG_NAME)/Default)
-  PROVIDES:=$(PKG_NAME)
-  DEPENDS+= +$(PKG_NAME)-client +$(PKG_NAME)-server +$(PKG_NAME)-testcode
-endef
-
 Package/$(PKG_NAME)-client = $(Package/$(PKG_NAME)/Default)
 Package/$(PKG_NAME)-server = $(Package/$(PKG_NAME)/Default)
 Package/$(PKG_NAME)-testcode = $(Package/$(PKG_NAME)/Default)
@@ -58,7 +52,6 @@ define Package/$(PKG_NAME)/description/Default
   An open source STUN server and client code by john selbie. Compliant with the latest RFCs including 5389, 5769, and 5780. Also includes backwards compatibility for RFC 3489.
 endef
 
-Package/$(PKG_NAME)/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-client/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-server/description = $(Package/$(PKG_NAME)/description/Default)
 Package/$(PKG_NAME)-testcode/description = $(Package/$(PKG_NAME)/description/Default)
@@ -81,4 +74,3 @@ endef
 $(eval $(call BuildPackage,$(PKG_NAME)-client))
 $(eval $(call BuildPackage,$(PKG_NAME)-testcode))
 $(eval $(call BuildPackage,$(PKG_NAME)-server))
-$(eval $(call BuildPackage,$(PKG_NAME)))
